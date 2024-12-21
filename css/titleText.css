@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.rotating-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 3vw;
+    color: rgb(5, 5, 5);
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: slide-in 2s ease-in-out;
+}
+
+@media (max-width: 767px) { 
+    .rotating-text {
+        font-size: 32px;
+        text-align: unset;
+    }
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -30%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.rotating-text p {
+    display: inline-flex;
+    margin: 0;
+    vertical-align: top;
+}
+
+.rotating-text p .word {
+    position: absolute;
+    display: flex;
+    opacity: 0;
+}
+
+.rotating-text p .word .letter {
+    transform-origin: center center 25px;
+}
+
+.rotating-text p .word .letter.out {
+    transform: rotateX(90deg);
+    transition: 0.32s cubic-bezier(0.6, 0, 0.7, 0.2);
+}
+
+.rotating-text p .word .letter.in {
+    transition: 0.38s ease;
+}
+
+.rotating-text p .word .letter.behind {
+    transform: rotateX(-90deg);
+}
+
+@keyframes slide-up-right {
+    0% {
+        transform: translateY(100%);
+    }
+    50% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateX(62%);
+    }
+}
+
+.alizarin {
+    color: #e74c3c;
+}
+
+.wisteria {
+    color: #8e44ad;
+}
+
+.peter-river {
+    color: #3498db;
+}
+
+.emerald {
+    color: #2ecc71;
+}
+
+.sun-flower {
+    color: #f1c40f;
+}

@@ -1,0 +1,113 @@
+@media (min-width: 1275px) {
+    /* .my-name {
+        font-size: 72px;
+    }
+    .second-text {
+        font-size: 48px;
+    } */
+}
+
+@media (min-width: 990px) and (max-width: 1275px) {
+    .tooltip-container-linked, .tooltip-container-gmail, .tooltip-container-github {
+        scale: 1;
+    }
+}
+
+@media (min-width: 767px) and (max-width: 990px) {
+    .tooltip-container-linked, .tooltip-container-gmail, .tooltip-container-github {
+        scale: 1;
+    }
+    .tooltip-container-linked {
+        left: 40%;
+    }
+    .tooltip-container-github {
+        left: 15%;
+    }
+}
+
+@media (max-width: 767px) {
+    .my-name {
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 5vw;
+    }
+    .my-name.animate .first-text,
+    .my-name.animate .second-text {
+        animation: none !important;
+        transform: translateY(0);
+    }
+    .menu-sidebar {
+        width: 80vw;
+    }
+    .menu-card-title {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        font-size: 6vw;
+    }
+    .menu-card-copy {
+        display: none;
+    }
+    .photo-container {
+        left: 50%;
+        top: 125%;
+        transform: translateX(-50%);
+    }
+    .photo-container img {
+        width: 200px;
+    }
+    .my-description {
+        top: 170%;
+        right: 50%;
+        width: 60%;
+        transform: translateX(50%);
+        font-size: 16px;
+    }
+    .tooltip-container-linked, .tooltip-container-gmail, .tooltip-container-github {
+        scale: 1;
+        left: unset;
+        right: 7%
+    }
+    .tooltip-container-linked {
+        top: 130%;
+    }
+    .tooltip-container-gmail {
+        top: 140%;
+    }
+    .tooltip-container-github {
+        top: 150%;
+    }
+    .tooltip-container-linked .tooltip, .tooltip-container-gmail .tooltip, .tooltip-container-github .tooltip {
+        display: none;
+    }
+    .tooltip-container-linked .icon .text, .tooltip-container-gmail .icon .text, .tooltip-container-github .icon .text {
+        display: none;
+    }
+    .tooltip-container-linked .icon:hover .layer, .tooltip-container-gmail .icon:hover .layer, .tooltip-container-github .icon:hover .layer {
+        transform: none;
+    }
+    .scroll-to-explore {
+        font-size: 15px;
+    }
+    .alarm {
+        font-size: 15px;
+    }
+}
+
+@media (max-height: 834px) {
+    .photo-container {
+        top: 135%;
+    }
+}
+
+@media (max-height: 600px) and (max-width: 767px) {
+    .tooltip-container-linked {
+        top: 130%;
+    }
+    .tooltip-container-gmail {
+        top: 160%;
+    }
+    .tooltip-container-github {
+        top: 190%;
+    }
+}

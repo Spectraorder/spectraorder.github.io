@@ -1,0 +1,13 @@
+.mouseCircle {
+    --circle-size: 40px;
+    position: fixed;
+    height: var(--circle-size);
+    width: var(--circle-size);
+    border:  1px solid black;
+    border-radius: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    top: calc(var(--circle-size) / 2 * -1);
+    left: calc(var(--circle-size) / 2 * -1);
+    pointer-events: none;
+    z-index: 50;
+}

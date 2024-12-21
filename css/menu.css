@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(222, 222, 222, 0.7);
+    backdrop-filter: blur(5px);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.top-nav {
+    position: fixed;
+    top: 5%;
+    right: 5%;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.overlay-toggle {
+    width: 120px;
+    height: 40px;
+    margin: 0.75em;
+    padding: 0.5em;
+    border-radius: 40px;
+    background-color: rgb(228, 230, 239);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.overlay-toggle svg {
+    margin-top: 8px;
+    margin-left: 12px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.overlay-toggle:hover {
+    background-color: white; /* Brighter background color on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-toggle:hover svg {
+    transform: rotate(90deg);
+}
+
+.overlay-toggle p {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.menu-text {
+    position: relative;
+    text-align: center;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.menu-text p {
+    margin: 0;
+    transition: transform 0.4s;
+}
+
+.close-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(100%);
+}
+
+.overlay-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+.overlay-toggle.active .menu-text .menu-text {
+    transform: translateY(-100%);
+}
+
+.overlay-toggle.active .menu-text .close-text {
+    transform: translateY(0);
+}
+
+.overlay-toggle.active {
+    background-color: white;
+}
+
+.overlay-toggle.active svg {
+    transform: rotate(90deg);
+}
+
+.menu-sidebar {
+    position: fixed;
+    top: 15%;
+    right: 0;
+    width: 30vw;
+    height: 70vh;
+    padding: 0.75em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75em;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 18;
+    font-family: 'Poppins', sans-serif;
+}
+
+.menu-card {
+    position: relative;
+    right: -110%;
+    padding: 1em;
+    flex: 1;
+    background: white;
+    color: black;
+    border-radius: 0.5em;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.menu-card-title {
+    font-size: 2vw;
+    letter-spacing: -0.034em;
+}
+
+.menu-card-copy {
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    font-size: 15px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.menu-card:hover {
+    background: #020B44;
+    color: white;
+}
+
+.menu-card:hover .menu-card-copy {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.volume {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    background-color: rgb(228, 230, 239);
+    overflow: hidden;
+    position: relative;
+}
+.volume-icon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.volume-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 999;
+}
+.volume-icon:before {
+    content: "";
+    display: flex;
+    width: 0px;
+    height: 0px;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(0, 22, 236);
+}
+.volume-icon:hover:before {
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+}
+.volume-svg {
+    z-index: 2;
+    color: rgb(32, 33, 36);
+    height: 30px;
+    width: 30px;
+    transition: color 0.2s ease;
+}
+.volume-icon:hover svg {
+    color: rgb(255, 255, 255);
+}
+.volume-svg path {
+    transition: d 0.5s ease;
+}
