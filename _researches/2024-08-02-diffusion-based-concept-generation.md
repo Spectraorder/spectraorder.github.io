@@ -4,7 +4,7 @@ collection: researches
 permalink: /researches/diffusion-concept/
 excerpt: 'Developed advanced diffusion models for hybrid and part-based concept generation with integrated NLP guidance and ControlNet-based segmentation.'
 date: 2024-08-02
-venue: 'DeepMind'
+venue: 'DeepMind Research'
 citation: 'Under development'
 header:
   teaser: "diffusion-concept.png"
