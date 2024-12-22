@@ -70,20 +70,20 @@
   border-radius: $border-radius;
   overflow: hidden;
   display: inline-block;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   img {
     max-height: 300px;
     width: auto;
     object-fit: contain;
   }
-}
 
-.archive__item:hover {
-  .archive__item-teaser {
+  &:hover {
     box-shadow: 0 0 10px rgba(#000, 0.25);
     transform: scale(1.02);
   }
+}
 
+.archive__item:hover {
   .archive__item-title {
     text-decoration: underline;
   }
