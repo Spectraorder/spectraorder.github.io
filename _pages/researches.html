@@ -1,0 +1,43 @@
+---
+layout: archive
+title: "Research Projects"
+permalink: /researches/
+author_profile: true
+---
+
+{% include base_path %}
+
+{% for post in site.researches %}
+  <div class="archive__item">
+    <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+      <h2 class="archive__item-title" itemprop="headline">
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title }}</a>
+      </h2>
+      
+      {% if post.date %}
+        <p class="page__meta">
+          <i class="fa fa-fw fa-calendar" aria-hidden="true"></i> 
+          {{ post.date | date: "%B %d, %Y" }}
+        </p>
+      {% endif %}
+
+      {% if post.venue %}
+        <p><i>{{ post.venue }}</i></p>
+      {% endif %}
+
+      {% if post.excerpt %}
+        <p class="archive__item-excerpt" itemprop="description">
+          {{ post.excerpt }}
+        </p>
+      {% endif %}
+
+      {{ post.content }}
+
+      {% if post.citation %}
+        <p style="font-size: smaller">
+          <strong>Citation:</strong> {{ post.citation }}
+        </p>
+      {% endif %}
+    </article>
+  </div>
+{% endfor %} 
