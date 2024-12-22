@@ -69,16 +69,8 @@
 .archive__item-teaser {
   border-radius: $border-radius;
   overflow: hidden;
-  position: relative;
-  
   img {
-    max-width: 100%;
-    height: auto;
-    transition: transform 0.3s ease;
-    
-    &:hover {
-      transform: scale(1.02);
-    }
+    width: 100%;
   }
 }
 
@@ -250,19 +242,4 @@
       }
     }
   }
-}
-
-.research-image {
-  max-width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-  margin: 0 auto;
-  display: block;
-}
-
-.archive__item-teaser {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1em 0;
 }
