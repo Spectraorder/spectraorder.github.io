@@ -25,6 +25,12 @@ author_profile: true
         <p><i>{{ post.venue }}</i></p>
       {% endif %}
 
+      {% if post.excerpt %}
+        <p class="archive__item-excerpt" itemprop="description">
+          {{ post.excerpt }}
+        </p>
+      {% endif %}
+
       {% if post.header.teaser %}
         <div class="archive__item-teaser">
           <img src=
@@ -35,12 +41,6 @@ author_profile: true
             {% endif %}
             alt="" class="research-image">
         </div>
-      {% endif %}
-
-      {% if post.excerpt %}
-        <p class="archive__item-excerpt" itemprop="description">
-          {{ post.excerpt }}
-        </p>
       {% endif %}
 
       {{ post.content }}
