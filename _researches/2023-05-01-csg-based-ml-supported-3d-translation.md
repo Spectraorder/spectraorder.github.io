@@ -5,22 +5,11 @@ permalink: /researches/csg-based-ml/
 excerpt: 'Developed algorithms to convert hand-drawn sketches into 3D assets using Constructive Solid Geometry (CSG).'
 date: 2023-05-01
 venue: 'New York University'
-citation: 'Chen, Yiming. "CSG-Based ML-Supported 3D Translation of Sketches into Game Assets." Under review by The Visual Computer, 2023.'
+citation: "Chen, Y., Liu, Y., & Kayar-Ceylan, G. 'CSG-Based ML-Supported 3D Translation of Sketches into Game Assets.' Under review by The Visual Computer, 2024."
 ---
 
-## Overview
-The research focused on developing algorithms that leverage **Constructive Solid Geometry (CSG)** to translate hand-drawn sketches into 3D game assets. By automating the sketch-to-model conversion process, this project aimed to improve prototyping workflows for game designers.
+The **CSG-Based ML-Supported 3D Translation** research tackles the long-standing challenge of transforming freehand 2D sketches into detailed 3D models with minimal user effort. By combining the geometric precision of Constructive Solid Geometry (CSG) with advanced machine learning techniques, this project empowers designers, architects, and game developers to bridge the gap between conceptual sketches and tangible 3D assets.
 
-## Methodology
-1. **Algorithm Development**: Designed a CSG-based approach to interpret hand-drawn sketches and convert them into 3D models.
-2. **Diffusion Model Optimization**: Enhanced texture rendering by implementing refinement techniques, reducing rendering time by **20%**.
-3. **Real-Time Visualization**: Built a full-stack application using **Three.js** and **WebGL** to provide a seamless, real-time drawing and visualization experience.
+Key innovations include leveraging CSG to extrude simple geometric shapes into complex structures and integrating machine learning for precise sketch recognition. The project’s web-based interface allows users to draw freely and watch their sketches come to life in real-time 3D, revolutionizing workflows that traditionally required extensive expertise and time.
 
-## Results
-- Improved automation in sketch-to-model translation by **40%**.
-- Reduced texture rendering time by **20%**.
-- Received positive feedback from game designers who reported significant improvements in efficiency during early-stage prototyping.
-
-## Impact
-This research has the potential to revolutionize early-stage game design workflows by making 3D modeling more accessible and efficient. By automating the translation process, designers can focus on creativity rather than technical challenges, accelerating development cycles and reducing costs.
-
+With applications in architecture, game design, and prototyping, this research streamlines creative processes, enabling faster iterations and broadening access to high-quality 3D modeling tools. The system has already demonstrated a 40% improvement in modeling automation and a 20% reduction in texture rendering time, making it a practical solution for real-world creative challenges. This work not only advances the state of sketch-to-3D translation but also opens new possibilities for intuitive and inclusive design practices.
