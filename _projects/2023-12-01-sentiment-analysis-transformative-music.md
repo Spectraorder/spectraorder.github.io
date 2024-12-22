@@ -6,7 +6,7 @@ excerpt: "Analyzed lyrical and musical elements using machine learning and NLP t
 date: 2023-12-01
 venue: "New York University"
 header:
-  teaser: "transformative-music.png"
+  teaser: "transformative-music.jpg"
 ---
 
 The **Machine Learning and NLP-based Sentiment Analysis in Transformative Music** project explores the profound emotional and psychological effects of music by analyzing its lyrical and auditory elements. Leveraging advanced Natural Language Processing (NLP) and machine learning techniques, this project models the emotional dynamics conveyed through lyrics and music, bridging the intersection of technology and the arts.
