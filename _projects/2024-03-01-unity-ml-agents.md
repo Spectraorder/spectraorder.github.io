@@ -24,4 +24,4 @@ The use of the PPO algorithm optimizes the agent’s policy over time, resulting
 ### Applications and Impact
 The Unity ML-Agents with Walking Robot project demonstrates the practical application of reinforcement learning techniques to robotics and AI training. The results include a 35% improvement in obstacle avoidance efficiency and a 25% reduction in training time, indicating the effectiveness of curriculum training in achieving robust and adaptable AI behaviors. This project has potential applications in autonomous robotics, gaming, and simulation-based training systems, offering insights into scalable approaches for real-world AI challenges.
 
-For more information, including the repository and implementation details, visit the project on [GitHub](https://github.com/MissTiny/RL_robot).
+For more information, visit the project report [here](https://github.com/MissTiny/RL_robot).
