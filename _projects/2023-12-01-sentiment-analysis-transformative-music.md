@@ -20,4 +20,4 @@ The classifier integrated lyrical sentiment scores and audio features using an 8
 ### Applications and Impact
 This research lays the foundation for computational approaches to understand the transformative effects of music. The findings not only advance methodologies in sentiment analysis but also have practical implications in therapeutic music recommendation systems, AI-driven music generation, and personalized playlists for emotional well-being. By quantifying the interplay between lyrics and music, the project paves the way for innovations at the crossroads of machine learning, psychology, and the arts.
 
-For more information, contact the researcher or access the full project details on [GitHub](https://github.com/MissTiny/RL_robot).
+For more information, visit the project report [here](https://spectraorder.github.io/files/Machine_Learning_and_Natural_Language_Processing_based_Sentimental_Analysis_with_respect_to_Transformative_Music.pdf).
