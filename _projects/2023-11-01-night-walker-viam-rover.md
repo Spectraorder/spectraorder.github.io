@@ -4,7 +4,7 @@ collection: projects
 permalink: /projects/night-walker-viam-rover/
 excerpt: "Developed an autonomous robot equipped with a TensorFlow Lite model for object detection and navigation in low-light environments."
 date: 2023-12-01
-venue: "Independent Research"
+venue: "New York University"
 header:
   teaser: "night-walker-robot.png"
 ---
