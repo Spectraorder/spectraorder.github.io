@@ -32,14 +32,14 @@ author_profile: true
       {% endif %}
 
       {% if post.header.teaser %}
-        <div class="archive__item-teaser">
+        <div class="archive__item-teaser" style="max-height: 300px;">
           <img src=
             {% if post.header.teaser contains "://" %}
               "{{ post.header.teaser }}"
             {% else %}
               "{{ base_path }}/images/{{ post.header.teaser }}"
             {% endif %}
-            alt="">
+            alt="" style="max-height: 300px; width: 100%; object-fit: contain;">
         </div>
       {% endif %}
 
