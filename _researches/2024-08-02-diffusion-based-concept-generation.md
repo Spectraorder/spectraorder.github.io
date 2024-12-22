@@ -3,7 +3,7 @@ title: "Diffusion-Based Concept Generation for Machine Learning Models"
 collection: researches
 permalink: /researches/diffusion-concept/
 excerpt: 'Developed advanced diffusion models for hybrid and part-based concept generation with integrated NLP guidance and ControlNet-based segmentation.'
-date: 2024-08-01
+date: 2024-08-02
 venue: 'DeepMind'
 citation: 'Under development'
 header:
