@@ -69,8 +69,11 @@
 .archive__item-teaser {
   border-radius: $border-radius;
   overflow: hidden;
+  height: 300px;
   img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
