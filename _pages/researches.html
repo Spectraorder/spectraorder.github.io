@@ -7,7 +7,8 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.researches %}
+{% assign sorted_researches = site.researches | sort: 'date' | reverse %}
+{% for post in sorted_researches %}
   <div class="archive__item">
     <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
       <h2 class="archive__item-title" itemprop="headline">
