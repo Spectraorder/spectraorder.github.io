@@ -226,6 +226,9 @@ collections:
   researches:
     output: true
     permalink: /:collection/:path/
+  projects:
+    output: true
+    permalink: /projects/:path/
 
 
 # These settings control how pages and collections are included in the site
@@ -287,6 +290,15 @@ defaults:
   - scope:
       path: ""
       type: researches
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+  # Projects Collection
+  - scope:
+      path: ""
+      type: projects
     values:
       layout: single
       author_profile: true
