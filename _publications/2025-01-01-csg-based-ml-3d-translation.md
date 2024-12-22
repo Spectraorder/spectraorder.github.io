@@ -1,7 +1,7 @@
 ---
 title: "CSG-Based ML-Supported 3D Translation of Sketches into Game Assets"
 collection: publications
-category: journals
+category: manuscripts
 permalink: /publication/2025-01-01-csg-based-ml-3d-translation
 excerpt: 'This paper introduces a system that translates freehand 2D sketches into detailed 3D models using Constructive Solid Geometry (CSG) and machine learning techniques.'
 date: 2025-01-01
