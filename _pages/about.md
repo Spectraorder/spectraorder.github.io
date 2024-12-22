@@ -18,5 +18,8 @@ I am a Masterâ€™s student in Computer Science at Georgia Tech, with a Bachelorâ€
 - **Software Engineer Intern**, Shenzhen Huafu Information Technology Co., Ltd., 2023
 - **Software Engineer Intern**, Shenzhen Ningqu Technology Co., Ltd., 2022
 
+## Contact
+- **Email**: [danielatlas3455@gmail.com](mailto:danielatlas3455@gmail.com)
+
 ---
 Explore more about my projects and connect with me on [LinkedIn](https://www.linkedin.com/in/yiming-chen-b8447122a/).

@@ -1,10 +1,10 @@
 ---
 title: "CSG-Based ML-Supported 3D Translation of Sketches into Game Assets"
 collection: researches
-permalink: /researches
+permalink: /researches/csg-based-ml/
 excerpt: 'Developed algorithms to convert hand-drawn sketches into 3D assets using Constructive Solid Geometry (CSG).'
 date: 2023-05-01
-venue: 'Independent Research, New York University'
+venue: 'New York University'
 citation: 'Chen, Yiming. "CSG-Based ML-Supported 3D Translation of Sketches into Game Assets." Under review by The Visual Computer, 2023.'
 ---
 

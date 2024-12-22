@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Research Projects"
+title: "Research Overall"
 permalink: /researches/
 author_profile: true
 ---
@@ -11,7 +11,7 @@ author_profile: true
   <div class="archive__item">
     <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
       <h2 class="archive__item-title" itemprop="headline">
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.title }}</a>
+        <a href="{{ post.permalink | prepend: base_path }}" rel="permalink">{{ post.title }}</a>
       </h2>
       
       {% if post.date %}
