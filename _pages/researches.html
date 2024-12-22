@@ -10,6 +10,18 @@ author_profile: true
 {% for post in site.researches %}
   <div class="archive__item">
     <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+      {% if post.header.teaser %}
+        <div class="archive__item-teaser">
+          <img src=
+            {% if post.header.teaser contains "://" %}
+              "{{ post.header.teaser }}"
+            {% else %}
+              "{{ base_path }}/images/{{ post.header.teaser }}"
+            {% endif %}
+            alt="">
+        </div>
+      {% endif %}
+      
       <h2 class="archive__item-title" itemprop="headline">
         <a href="{{ post.permalink | prepend: base_path }}" rel="permalink">{{ post.title }}</a>
       </h2>
