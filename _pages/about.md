@@ -22,4 +22,4 @@ I am a Masterâ€™s student in Computer Science at Georgia Tech, with a Bachelorâ€
 - **Email**: [danielatlas3455@gmail.com](mailto:danielatlas3455@gmail.com)
 
 ---
-Explore more about my projects and connect with me on [LinkedIn](https://www.linkedin.com/in/yiming-chen-b8447122a/).
+Explore more about my [projects](/projects/) and connect with me on [LinkedIn](https://www.linkedin.com/in/yiming-chen-b8447122a/).
