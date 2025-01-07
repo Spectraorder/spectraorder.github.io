@@ -5,7 +5,7 @@ permalink: /researches/csg-based-ml/
 excerpt: 'Developed algorithms to convert hand-drawn sketches into 3D assets using Constructive Solid Geometry (CSG).'
 date: 2023-05-01
 venue: 'New York University'
-citation: "Chen, Y., Liu, Y., & Kayar-Ceylan, G. 'CSG-Based ML-Supported 3D Translation of Sketches into Game Assets.' Under review by The Visual Computer, 2024."
+citation: 'Chen, Y., Liu, Y., & Kayar-Ceylan, G. (2025). "CSG-based ML-supported 3D translation of sketches into game assets for game designers." <i>Visual Computer</i>. https://doi.org/10.1007/s00371-024-03758-9'
 header:
   teaser: "csg-research.png"
 ---
