@@ -19,7 +19,7 @@ Key features of this research include:
 
 Applications of this system span architecture, game design, and prototyping, offering a 40% improvement in modeling automation and a 20% reduction in texture rendering time. The system democratizes access to advanced 3D modeling tools, fostering creativity and enhancing productivity.
 
-For more information, visit the related [CSG-Based ML-Supported 3D Translation Research page](/researches/csg-based-ml/) or the dedicated [project website](https://spectraorder.github.io/CSG-3D-page/).
+For more information, visit the related [CSG-Based ML-Supported 3D Translation Research page](/researches/csg-based-ml/) or the dedicated [paper website](https://spectraorder.github.io/CSG-3D-page/).
 
 This work will be published in **The Visual Computer** and marks a significant step forward in sketch-based 3D modeling research.
 
