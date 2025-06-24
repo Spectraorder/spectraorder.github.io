@@ -5,7 +5,7 @@ permalink: /researches/gaussian-visibility/
 excerpt: 'Developed the Gaussian Visibility Field (GVF) using deep learning techniques for uncertainty mapping, achieving 80% faster rendering compared to Neural Visibility Field.'
 date: 2024-08-01
 venue: 'NVIDIA Research'
-citation: 'Under development'
+# citation: 'Under development'
 # header:
 #   teaser: "gvf-research.png"
 ---
