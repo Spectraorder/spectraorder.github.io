@@ -33,7 +33,7 @@ I'm a Master's student in Computer Science at [Georgia Tech](https://www.gatech.
 
 My research interests lie at the intersection of computer vision and machine learning, with a focus on 3D scene understanding, generative modeling, and physical scene properties.
 
-Previously, I completed my Bachelor's degree in Computer Science and Mathematics at [New York University](https://www.nyu.edu/). I have also had valuable research collaborations with Google DeepMind and NVIDIA, and gained industry experience as an intern at Amazon Web Services.
+Previously, I completed my Bachelor's degree in Computer Science and Mathematics at [New York University](https://www.nyu.edu/), where I had the pleasure of conducting research with [Prof. Gizem Kayar](https://wp.nyu.edu/courantinstituteofmathematicalsciences-gizemk/). I have also had valuable research collaborations with Google DeepMind and NVIDIA, and gained industry experience as an intern at Amazon Web Services.
 
 If you'd like to discuss research opportunities, please feel free to reach out via email.
 
