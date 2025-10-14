@@ -2,11 +2,25 @@
 layout: page
 permalink: /teaching/
 title: Teaching
-description: Materials for courses you taught. Replace this text with your description.
+description: A summary of my teaching assistant experience.
 nav: true
-nav_order: 6
+nav_order: 5
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+A summary of my teaching assistant experience at Georgia Tech and New York University.
 
-Organize your courses by years, topics, or universities, however you like!
+---
+
+### [Georgia Institute of Technology](https://www.gatech.edu/)
+
+- **Head Teaching Assistant**, *CS 6476 A: Computer Vision*, Fall 2025
+- **Teaching Assistant**, *CS 6476 A: Computer Vision*, Spring 2025
+
+---
+
+### [New York University](https://www.nyu.edu/)
+
+- **Teaching Assistant**, *CSCI-UA 201: Computer Systems Organization*, Spring 2024
+- **Teaching Assistant**, *CSCI-UA 201: Computer Systems Organization*, Fall 2023
+- **Teaching Assistant**, *CORE-UA 110: Great Ideas in Math*, Spring 2023
+- **Teaching Assistant**, *MATH-UA 9: Algebra, Trigonometry, and Functions*, Fall 2022
