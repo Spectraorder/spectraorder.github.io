@@ -4,7 +4,7 @@
   year         = {2026},
   booktitle    = {Under review at ICLR},
   preview      = {chimera-teaser.png},
-  abstract     = {This is a placeholder abstract for the Chimera paper. Replace this with your actual abstract.},
+  abstract     = {Personalized image generative models are highly proficient at synthesizing images from text or a single image, yet they lack explicit control for composing objects from specific parts of multiple source images without user specified masks or annotations. To address this, we introduce Chimera, a personalized image generation model that generates novel objects by combining specified parts from different source images according to textual instructions. To train our model, we first construct a dataset from a taxonomy built on 464 unique (part, subject) pairs, which we term semantic atoms. From this, we generate 37k prompts and synthesize the corresponding images with a high-fidelity text-to-image model. We train a custom diffusion prior model with part-conditional guidance, which steers the image-conditioning features to enforce both semantic identity and spatial layout. We also introduce an objective metric PartEval to assess the fidelity and compositional accuracy of generation pipelines. Human evaluations and our proposed metric show that Chimera outperforms other baselines by 14% in part alignment and compositional accuracy and 21% in visual quality.},
   html         = {https://chimera-compositional-image-generation.vercel.app/},
   selected     = {true}
 }
@@ -15,7 +15,7 @@
   year         = {2025},
   booktitle    = {ICCV},
   preview      = {clink-teaser.png},
-  abstract     = {This is a placeholder abstract for the Clink! Chop! Thud! paper. Replace this with your actual abstract.},
+  abstract     = {Can a model distinguish between the sound of a spoon hitting a hardwood floor versus a carpeted one? Everyday object interactions produce sounds unique to the objects involved. We introduce the sounding object detection task to evaluate a model's ability to link these sounds to the objects directly involved. Inspired by human perception, our multimodal object-aware framework learns from in-the-wild egocentric videos. To encourage an object-centric approach, we first develop an automatic pipeline to compute segmentation masks of the objects involved to guide the model's focus during training towards the most informative regions of the interaction. A slot attention visual encoder is used to further enforce an object prior. We demonstrate state of the art performance on our new task along with existing multimodal action understanding tasks.},
   arxiv        = {2510.02313},
   html         = {https://clink-chop-thud.github.io/},
   selected     = {true}
@@ -28,19 +28,18 @@
   booktitle    = {The Visual Computer},
   preview      = {csg-teaser.png},
   pages        = {1--13},
-  abstract     = {This is a placeholder abstract for the CSG-based 3D translation paper. Replace this with your actual abstract.},
+  abstract     = {This research project aims to develop a new technique for translating 2D sketches into 3D assets like building models using machine learning and Constructive Solid Geometry (CSG) algorithms. The ability to quickly create 3D building models from simple freehand sketches has widespread applications in fields like architecture and construction. The key innovation is the use of CSG principles to understand geometric elements from sketches, extrude them into 3D, and combine simple shapes to create complex structures.},
   pdf          = {https://doi.org/10.1007/s00371-024-03758-9},
   html         = {https://spectraorder.github.io/CSG-3D-page/},
   selected     = {true}
 }
 
-@patent{chen2020patent,
+@inproceedings{chen2020patent,
   title        = {A Device for Compressing Garbage in Dustbin},
   author       = {Yiming Chen},
   year         = {2020},
-  number       = {CN210823859U},
-  assignee     = {China National Intellectual Property Administration},
+  booktitle    = {China National Intellectual Property Administration (Patent No. CN210823859U)},
   preview      = {dustbin-teaset.png},
-  abstract     = {This is a placeholder abstract for the garbage compression device patent. Replace this with your actual abstract.},
+  abstract     = {The present invention discloses a device for compressing garbage in a trash bin, comprising: a support plate, a plurality of pillars fixedly disposed below the support plate, a plurality of telescopic pillars connected at one end to the support plate below the support plate, and a compression plate connected to the other end of the telescopic pillars, wherein the pillars are used to extend into the trash bin and support the support plate, and the trash in the trash bin is compressed by controlling the downward movement of the telescopic pillars and the compression plate connected thereto. The present invention is placed above the trash bin so that the pillars can extend into the trash bin. If there is a lot of trash in the trash bin, the telescopic pillars can be controlled to extend downward, thereby controlling the compression plate to compress the trash in the trash bin, freeing up more space and achieving the purpose of fully utilizing the space in the trash bin.},
   html         = {http://epub.cnipa.gov.cn/cred/CN210823859U}
 }
