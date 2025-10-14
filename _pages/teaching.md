@@ -2,12 +2,12 @@
 layout: page
 permalink: /teaching/
 title: Teaching
-description: A summary of my teaching assistant experience.
+# description: A summary of my teaching assistant experience.
 nav: true
 nav_order: 5
 ---
 
-A summary of my teaching assistant experience at Georgia Tech and New York University.
+<!-- A summary of my teaching assistant experience at Georgia Tech and New York University. -->
 
 ---
 
