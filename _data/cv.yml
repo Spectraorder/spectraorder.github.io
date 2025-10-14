@@ -3,6 +3,8 @@
   contents:
     - name: Full Name
       value: Yiming Chen
+    - name: Languages
+      value: Chinese (Native), English (Fluent), Japanese (Conversational)
 
 - title: Education
   type: time_table
@@ -24,18 +26,10 @@
   contents:
     - title: Machine Learning Engineer Internship
       institution: Amazon Web Services, Cupertino, CA
-      year: May 2025 - Aug 2025
-      description:
-        - Designed and implemented pipeline parallel processing in NxDI stack for large language models, improving distributed training efficiency by 35%.
-        - Implemented Sequence Pipeline Parallel to create a prompt parallel architecture for window context encoding, enhancing vLLM inference performance by 2.3x.
-        - Collaborated with the inference team to optimize distributed tensor and pipeline parallelism, documenting 40% latency improvements.
+      year: 2025
     - title: Machine Learning Engineer Internship
       institution: T.C.L. Industries Holdings, Shenzhen, China
-      year: Jun 2024 - Aug 2024
-      description:
-        - Led the development of predictive analytics models using LSTMs, increasing accuracy from 40% to 90%.
-        - Developed APIs for the model, making it efficient to use internally and reducing costs by 35%.
-        - Integrated the model with Microsoft 365 to enable fine-tuning of specific prediction models.
+      year: 2024
 
 - title: Honors and Awards
   type: time_table
