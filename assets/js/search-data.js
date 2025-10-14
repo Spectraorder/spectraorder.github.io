@@ -398,16 +398,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
+            },},{id: "news-our-paper-clink-chop-thud-learning-object-sounds-from-real-world-interactions-has-been-accepted-at-iccv-2025",
+          title: 'Our paper, “Clink! Chop! Thud! - Learning Object Sounds from Real-World Interactions,” has...',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          section: "News",},{id: "news-our-paper-chimera-compositional-image-generation-using-part-based-concepting-has-been-submitted-to-iclr-2026",
+          title: 'Our paper, “Chimera: Compositional Image Generation using Part-based Concepting,” has been submitted to...',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
