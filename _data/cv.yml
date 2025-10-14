@@ -14,22 +14,22 @@
       year: 2024 - 2026
       description:
         - Specialization in Machine Learning.
-        - Advisor: <a href="https://faculty.cc.gatech.edu/~hays/">Prof. James Hays</a>
+        - 'Advisor: <a href="https://faculty.cc.gatech.edu/~hays/">Prof. James Hays</a>'
     - title: Bachelor's Degree in Computer Science and Mathematics
       institution: New York University, Manhattan, NY
       year: 2020 - 2024
       description:
-        - Advisor: <a href="https://wp.nyu.edu/courantinstituteofmathematicalsciences-gizemk/contact/">Prof. Gizem Kayar</a>
+        - 'Advisor: <a href="https://wp.nyu.edu/courantinstituteofmathematicalsciences-gizemk/contact/">Prof. Gizem Kayar</a>'
 
 - title: Experience
   type: time_table
   contents:
     - title: Machine Learning Engineer Internship
       institution: Amazon Web Services, Cupertino, CA
-      year: 2025
+      year: 2025.05 - 2025.08
     - title: Machine Learning Engineer Internship
       institution: T.C.L. Industries Holdings, Shenzhen, China
-      year: 2024
+      year: 2024.06 - 2024.08
 
 - title: Honors and Awards
   type: time_table
