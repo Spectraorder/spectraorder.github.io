@@ -29,7 +29,7 @@ latest_posts:
 
 Hi! I am Yiming Chen. 👋
 
-I'm a Master's student in Computer Science at [Georgia Tech](https://www.gatech.edu/), specializing in Machine Learning. I am a member of the Hays Lab, where I'm fortunate to be advised by [Professor James Hays](https://faculty.cc.gatech.edu/~hays/).
+I'm a Master's student in Computer Science at [Georgia Tech](https://www.gatech.edu/), specializing in Machine Learning. I am a member of the Hays Lab, where I'm fortunate to be advised by [Prof. James Hays](https://faculty.cc.gatech.edu/~hays/).
 
 My research interests lie at the intersection of computer vision and machine learning, with a focus on 3D scene understanding, generative modeling, and physical scene properties.
 
