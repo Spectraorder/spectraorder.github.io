@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-# subtitle: <a href="https://www.gatech.edu/">Georgia Institute of Technology</a>
+subtitle: <a href="https://www.gatech.edu/">Georgia Institute of Technology</a>
 
 profile:
   align: right
@@ -29,11 +29,11 @@ latest_posts:
 
 Hi! I am Yiming Chen. 👋
 
-I'm a Master's student in Computer Science at [Georgia Tech](https://www.gatech.edu/), specializing in Machine Learning. I am a member of the Hays Lab, where I'm fortunate to be advised by [Prof. James Hays](https://faculty.cc.gatech.edu/~hays/).
+I'm a PhD student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I'm fortunate to be advised by [Prof. Sidd Karamcheti](https://www.siddkaramcheti.com/).
 
 My research interests lie at the intersection of computer vision and machine learning, with a focus on 3D scene understanding, generative modeling, and physical scene properties.
 
-Previously, I completed my Bachelor's degree in Computer Science and Mathematics at [New York University](https://www.nyu.edu/), where I had the pleasure of conducting research with [Prof. Gizem Kayar](https://wp.nyu.edu/courantinstituteofmathematicalsciences-gizemk/). I have also had valuable research collaborations with Google DeepMind and NVIDIA, and gained industry experience as an intern at Amazon Web Services.
+Previously, I completed my Master's degree in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I was advised by [Prof. James Hays](https://faculty.cc.gatech.edu/~hays/), and my Bachelor's degree in Computer Science and Mathematics at [New York University](https://www.nyu.edu/), where I had the pleasure of conducting research with [Prof. Gizem Kayar](https://wp.nyu.edu/courantinstituteofmathematicalsciences-gizemk/). I have also had valuable research collaborations with Google DeepMind and NVIDIA, and gained industry experience as an intern at Amazon Web Services.
 
 If you'd like to discuss research opportunities, please feel free to reach out via email.
 

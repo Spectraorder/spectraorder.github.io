@@ -9,6 +9,11 @@
 - title: Education
   type: time_table
   contents:
+    - title: PhD in Computer Science
+      institution: Georgia Institute of Technology, Atlanta, GA
+      year: 2026 - Present
+      description:
+        - 'Advisor: <a href="https://www.siddkaramcheti.com/">Prof. Sidd Karamcheti</a>'
     - title: Master's Degree in Computer Science
       institution: Georgia Institute of Technology, Atlanta, GA
       year: 2024 - 2026
