@@ -38,3 +38,5 @@ Previously, I completed my Master's degree in Computer Science at [Georgia Tech]
 If you'd like to discuss research opportunities, please feel free to reach out via email.
 
 **Email: ychen3868 at gatech dot edu**
+
+**Offices: KACB 1332; CODA S1159F**
