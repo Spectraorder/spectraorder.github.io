@@ -39,4 +39,4 @@ If you'd like to discuss research opportunities, please feel free to reach out v
 
 **Email: ychen3868 at gatech dot edu**
 
-**Offices: KACB 1332; CODA S1159F**
+**Offices: KACB 1322; CODA S1159F**
