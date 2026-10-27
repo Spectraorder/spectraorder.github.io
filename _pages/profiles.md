@@ -2,6 +2,7 @@
 layout: profiles
 permalink: /people/
 title: people
+sitemap: false
 description: members of the lab or group
 nav: False
 nav_order: 7
