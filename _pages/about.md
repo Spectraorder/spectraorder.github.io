@@ -31,7 +31,7 @@ Hi! I am Yiming Chen. 👋
 
 I'm a PhD student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I'm fortunate to be advised by [Prof. Sidd Karamcheti](https://www.siddkaramcheti.com/).
 
-My research interests lie at the intersection of computer vision and machine learning, with a focus on 3D scene understanding, generative modeling, and physical scene properties.
+My research focuses on building robots that understand, predict, and act in the physical world alongside people. I'm particularly interested in world models and world action models (WAMs), object-centric representations of scenes and environments, and human-robot collaboration.
 
 Previously, I completed my Master's degree in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I was advised by [Prof. James Hays](https://faculty.cc.gatech.edu/~hays/), and my Bachelor's degree in Computer Science and Mathematics at [New York University](https://www.nyu.edu/), where I had the pleasure of conducting research with [Prof. Gizem Kayar](https://wp.nyu.edu/courantinstituteofmathematicalsciences-gizemk/). I have also had valuable research collaborations with Google DeepMind and NVIDIA, and gained industry experience as an intern at Amazon Web Services.
 
