@@ -26,7 +26,15 @@
         {% endif %}
       {% endif %}
       {% if entry.preview %}
-        {% if entry.preview contains '://' %}
+        {% assign preview_ext = entry.preview | split: '.' | last | downcase %}
+        {% if preview_ext == 'mp4' or preview_ext == 'webm' %}
+          {% if entry.preview contains '://' %}
+            {% assign preview_src = entry.preview %}
+          {% else %}
+            {% assign preview_src = entry.preview | prepend: '/assets/img/publication_preview/' | relative_url %}
+          {% endif %}
+          <video class="preview z-depth-1 rounded" src="{{ preview_src }}" autoplay loop muted playsinline></video>
+        {% elsif entry.preview contains '://' %}
           <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
         {% else %}
           {% assign entry_path = entry.preview | prepend: '/assets/img/publication_preview/' %}
@@ -200,6 +208,8 @@
       {% endif %}
       {% if entry.arxiv %}
         <a href="http://arxiv.org/abs/{{ entry.arxiv }}" class="btn btn-sm z-depth-0" role="button">arXiv</a>
+      {% elsif entry.arxiv_coming_soon %}
+        <a class="coming-soon btn btn-sm z-depth-0" role="button" aria-disabled="true">arXiv (coming soon)</a>
       {% endif %}
       {% if entry.bibtex_show %}
         <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
