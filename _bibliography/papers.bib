@@ -1,3 +1,16 @@
+@inproceedings{liu2026geometric,
+  title        = {Do Agentic Policies Need to Look at Every Step? Geometric Abstraction for Reasoning and Action},
+  author       = {Yihang Liu and Yiming Chen and Mingzhe Zheng},
+  year         = {2026},
+  booktitle    = {CoRL Workshop on Agentic Robotics},
+  preview      = {geometric-abstraction-teaser.png},
+  abstract     = {Recent multimodal language models can reason directly about robot scenes, but it is unclear whether they need to repeatedly reinterpret raw visual observations at every step of an interaction. We propose shifting routine spatial reasoning from images to text and symbols through a 3D geometric abstraction that is refreshed locally from observations and read directly by the language models. Specifically, our interface represents scene geometry via typed, evidence-aware symbolic references to object parts, grounds them from calibrated RGB-D, and returns compact textual checkpoints with metric residuals after each action. Symbolic task structure can thus be reused across decisions while metric values are rebound to the current scene, with direct visual reasoning invoked only on demand. Across offline policy synthesis and continuous online execution, reasoning over grounded text and symbols improves multi-step manipulation completion while substantially reducing repeated multimodal queries, positioning explicit geometric state as an effective substrate for agentic robot policies.},
+  note         = {arXiv coming soon},
+  html         = {https://geometric-abstraction.github.io/},
+  code         = {https://github.com/Spectraorder/geometric-abstraction},
+  selected     = {true}
+}
+
 @inproceedings{chen2026chimera,
   title        = {Chimera: Compositional Image Generation using Part-based Concepting},
   author       = {Yiming Chen* and Shivam Singh* and Agneet Chatterjee and Amit Raj and James Hays and Yezhou Yang and Chitta Baral},
