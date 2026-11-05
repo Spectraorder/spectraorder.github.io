@@ -7,51 +7,99 @@
     </script> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> repositories | Yiming Chen </title> <meta name="author" content="Yiming Chen"> <meta name="description" content="Edit the `_data/repositories.yml` and change the `github_users` and `github_repos` lists to include your own GitHub profile and repositories."> <meta name="keywords" content="Yiming Chen, Georgia Tech, computer vision, machine learning, 3D scene understanding, generative modeling"> <style>@keyframes page-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:no-preference){[role="main"]{animation:page-arrive 320ms ease-out backwards}}</style> <script>
   (() => {
     const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+    const MAX_WAIT = 1500; // never hold a click longer than this waiting for the next page
+    const preloads = new Map();
     let exitAnimation;
     let navigationPending = false;
 
-    // Preserve normal navigation, history, and modified/new-tab clicks.
-    document.addEventListener("click", (event) => {
-      const link = event.target.closest("a[href]");
-      const pageContent = document.querySelector('[role="main"]');
-      if (
-        !link ||
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey ||
-        link.hasAttribute("download") ||
-        (link.target && link.target !== "_self") ||
-        !pageContent ||
-        motionPreference.matches ||
-        !pageContent.animate
-      )
-        return;
+    // The destination URL if this link goes to another page of this site, otherwise null
+    // (other sites, files, anchors on this page, and the current page navigate normally).
+    const pageDestination = (link) => {
+      if (!link || link.hasAttribute("download") || (link.target && link.target !== "_self")) return null;
       const destination = new URL(link.href, location.href);
-      // Only animate between pages of this site, not files, anchors on this page, or the current page.
       if (
         destination.origin !== location.origin ||
         destination.pathname.startsWith("/assets/") ||
         !/(\/|\.html)$/.test(destination.pathname) ||
         destination.pathname === location.pathname
       )
+        return null;
+      return destination;
+    };
+
+    // Fetch the page into the HTTP cache, then load the images in its main content.
+    const preload = (destination) => {
+      const key = destination.pathname;
+      if (!preloads.has(key)) {
+        const loading = fetch(destination.href, { credentials: "same-origin" })
+          .then((response) => (response.ok ? response.text() : ""))
+          .then((html) => {
+            const page = new DOMParser().parseFromString(html, "text/html");
+            const images = [...page.querySelectorAll('[role="main"] img')].slice(0, 12).map((element) => {
+              // Responsive images: load the same candidate the page will pick.
+              const source = element.closest("picture")?.querySelector("source[srcset]");
+              const image = new Image();
+              image.sizes = (source || element).getAttribute("sizes") || "";
+              const srcset = (source || element).getAttribute("srcset");
+              if (srcset) image.srcset = srcset.replace(/(^|,\s*)(\S+)/g, (m, sep, url) => sep + new URL(url, destination).href);
+              const src = element.getAttribute("src");
+              if (src) image.src = new URL(src, destination).href;
+              return image.decode().catch(() => {});
+            });
+            return Promise.all(images);
+          })
+          .catch(() => preloads.delete(key));
+        preloads.set(key, loading);
+      }
+      return preloads.get(key);
+    };
+
+    // Prefetch on hover, keyboard focus, or touch, so the page is usually ready before the click.
+    const warm = (event) => {
+      if (navigator.connection?.saveData) return;
+      const destination = pageDestination(event.target.closest?.("a[href]"));
+      if (destination) preload(destination);
+    };
+    document.addEventListener("pointerover", warm, { passive: true });
+    document.addEventListener("focusin", warm);
+    document.addEventListener("touchstart", warm, { passive: true });
+
+    // Preserve normal navigation, history, and modified/new-tab clicks.
+    document.addEventListener("click", (event) => {
+      const pageContent = document.querySelector('[role="main"]');
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        !pageContent ||
+        motionPreference.matches ||
+        !pageContent.animate
+      )
         return;
+      const destination = pageDestination(event.target.closest("a[href]"));
+      if (!destination) return;
       event.preventDefault();
       if (navigationPending) return;
       navigationPending = true;
-      exitAnimation = pageContent.animate(
-        [
-          { opacity: 1, transform: "translateY(0)" },
-          { opacity: 0, transform: "translateY(-8px)" },
-        ],
-        { duration: 160, easing: "ease-in", fill: "forwards" }
-      );
+      document.documentElement.style.cursor = "progress";
       const go = () => location.assign(destination.href);
-      exitAnimation.finished.then(go).catch(() => {});
-      // Navigate anyway if the animation stalls (e.g. the tab is hidden mid-click).
-      setTimeout(() => navigationPending && go(), 400);
+      const ready = Promise.race([preload(destination), new Promise((resolve) => setTimeout(resolve, MAX_WAIT))]);
+      ready.then(() => {
+        if (!navigationPending) return;
+        exitAnimation = pageContent.animate(
+          [
+            { opacity: 1, transform: "translateY(0)" },
+            { opacity: 0, transform: "translateY(-8px)" },
+          ],
+          { duration: 160, easing: "ease-in", fill: "forwards" }
+        );
+        exitAnimation.finished.then(go).catch(() => {});
+        // Navigate anyway if the animation stalls (e.g. the tab is hidden mid-click).
+        setTimeout(() => navigationPending && go(), 400);
+      });
     });
 
     // Restore the page when it comes back from the back/forward cache.
@@ -59,6 +107,7 @@
       exitAnimation?.cancel();
       exitAnimation = undefined;
       navigationPending = false;
+      document.documentElement.style.cursor = "";
     });
   })();
 </script> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/favicon_io/favicon.ico?ae0c0a15bf3303dd2cefca770dd7ad63"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://spectraorder.github.io/repositories/"> <script src="/assets/js/theme.js?a81d82887dd692e91686b43de4542f18"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
