@@ -1,5 +1,7 @@
 <!-- Page transitions, ported from the CHORD lab site: the content fades up and out on an internal link click,
-     then the next page's content rises in. Inlined rather than in _sass so PurgeCSS cannot strip it. -->
+     then the next page's content rises in. The next page and its images are loaded (or prefetched on hover)
+     before the fade-out starts, so there is no blank screen while it loads.
+     Inlined rather than in _sass so PurgeCSS cannot strip it. -->
 <style>
   @keyframes page-arrive {
     from {
@@ -21,51 +23,99 @@
 <script>
   (() => {
     const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+    const MAX_WAIT = 1500; // never hold a click longer than this waiting for the next page
+    const preloads = new Map();
     let exitAnimation;
     let navigationPending = false;
 
-    // Preserve normal navigation, history, and modified/new-tab clicks.
-    document.addEventListener("click", (event) => {
-      const link = event.target.closest("a[href]");
-      const pageContent = document.querySelector('[role="main"]');
-      if (
-        !link ||
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey ||
-        link.hasAttribute("download") ||
-        (link.target && link.target !== "_self") ||
-        !pageContent ||
-        motionPreference.matches ||
-        !pageContent.animate
-      )
-        return;
+    // The destination URL if this link goes to another page of this site, otherwise null
+    // (other sites, files, anchors on this page, and the current page navigate normally).
+    const pageDestination = (link) => {
+      if (!link || link.hasAttribute("download") || (link.target && link.target !== "_self")) return null;
       const destination = new URL(link.href, location.href);
-      // Only animate between pages of this site, not files, anchors on this page, or the current page.
       if (
         destination.origin !== location.origin ||
         destination.pathname.startsWith("/assets/") ||
         !/(\/|\.html)$/.test(destination.pathname) ||
         destination.pathname === location.pathname
       )
+        return null;
+      return destination;
+    };
+
+    // Fetch the page into the HTTP cache, then load the images in its main content.
+    const preload = (destination) => {
+      const key = destination.pathname;
+      if (!preloads.has(key)) {
+        const loading = fetch(destination.href, { credentials: "same-origin" })
+          .then((response) => (response.ok ? response.text() : ""))
+          .then((html) => {
+            const page = new DOMParser().parseFromString(html, "text/html");
+            const images = [...page.querySelectorAll('[role="main"] img')].slice(0, 12).map((element) => {
+              // Responsive images: load the same candidate the page will pick.
+              const source = element.closest("picture")?.querySelector("source[srcset]");
+              const image = new Image();
+              image.sizes = (source || element).getAttribute("sizes") || "";
+              const srcset = (source || element).getAttribute("srcset");
+              if (srcset) image.srcset = srcset.replace(/(^|,\s*)(\S+)/g, (m, sep, url) => sep + new URL(url, destination).href);
+              const src = element.getAttribute("src");
+              if (src) image.src = new URL(src, destination).href;
+              return image.decode().catch(() => {});
+            });
+            return Promise.all(images);
+          })
+          .catch(() => preloads.delete(key));
+        preloads.set(key, loading);
+      }
+      return preloads.get(key);
+    };
+
+    // Prefetch on hover, keyboard focus, or touch, so the page is usually ready before the click.
+    const warm = (event) => {
+      if (navigator.connection?.saveData) return;
+      const destination = pageDestination(event.target.closest?.("a[href]"));
+      if (destination) preload(destination);
+    };
+    document.addEventListener("pointerover", warm, { passive: true });
+    document.addEventListener("focusin", warm);
+    document.addEventListener("touchstart", warm, { passive: true });
+
+    // Preserve normal navigation, history, and modified/new-tab clicks.
+    document.addEventListener("click", (event) => {
+      const pageContent = document.querySelector('[role="main"]');
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        !pageContent ||
+        motionPreference.matches ||
+        !pageContent.animate
+      )
         return;
+      const destination = pageDestination(event.target.closest("a[href]"));
+      if (!destination) return;
       event.preventDefault();
       if (navigationPending) return;
       navigationPending = true;
-      exitAnimation = pageContent.animate(
-        [
-          { opacity: 1, transform: "translateY(0)" },
-          { opacity: 0, transform: "translateY(-8px)" },
-        ],
-        { duration: 160, easing: "ease-in", fill: "forwards" }
-      );
+      document.documentElement.style.cursor = "progress";
       const go = () => location.assign(destination.href);
-      exitAnimation.finished.then(go).catch(() => {});
-      // Navigate anyway if the animation stalls (e.g. the tab is hidden mid-click).
-      setTimeout(() => navigationPending && go(), 400);
+      const ready = Promise.race([preload(destination), new Promise((resolve) => setTimeout(resolve, MAX_WAIT))]);
+      ready.then(() => {
+        if (!navigationPending) return;
+        exitAnimation = pageContent.animate(
+          [
+            { opacity: 1, transform: "translateY(0)" },
+            { opacity: 0, transform: "translateY(-8px)" },
+          ],
+          { duration: 160, easing: "ease-in", fill: "forwards" }
+        );
+        exitAnimation.finished.then(go).catch(() => {});
+        // Navigate anyway if the animation stalls (e.g. the tab is hidden mid-click).
+        setTimeout(() => navigationPending && go(), 400);
+      });
     });
 
     // Restore the page when it comes back from the back/forward cache.
@@ -73,6 +123,7 @@
       exitAnimation?.cancel();
       exitAnimation = undefined;
       navigationPending = false;
+      document.documentElement.style.cursor = "";
     });
   })();
 </script>

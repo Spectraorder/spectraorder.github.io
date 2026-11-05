@@ -2,6 +2,12 @@
  * Content
  ******************************************************************************/
 
+html {
+  // Always reserve the scrollbar's space, so short pages (e.g. Teaching) don't come out wider
+  // than long ones and shift the centered navbar sideways.
+  scrollbar-gutter: stable;
+}
+
 body {
   padding-bottom: 70px;
   color: var(--global-text-color);
