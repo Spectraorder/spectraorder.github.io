@@ -32,20 +32,37 @@
     <!-- Content -->
     <div class="container mt-5" role="main">
       {% if page.toc and page.toc.sidebar %}
+        {% comment %}
+          The CV's section list is known at build time, so render it into the page instead of letting
+          bootstrap-toc build it after the scripts load (it would pop in after the content).
+          Ids match what bootstrap-toc generates, so existing #section links keep working.
+        {% endcomment %}
+        {% capture toc_prerendered %}
+          {%- if page.layout == 'cv' and site.data.cv -%}
+            {%- unless site.data.resume -%}
+              <ul class="nav navbar-nav">
+                {%- for entry in site.data.cv -%}
+                  <li><a class="nav-link" href="#{{ entry.title | slugify }}">{{ entry.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- endunless -%}
+          {%- endif -%}
+        {% endcapture %}
+        {% assign toc_prerendered = toc_prerendered | strip %}
         {% if page.toc.sidebar == 'right' %}
           <div class="row">
             <!-- main content area -->
             <div class="col-sm-9">{{ content }}</div>
             <!-- sidebar, which will move to the top on a small screen -->
             <div class="col-sm-3">
-              <nav id="toc-sidebar" class="sticky-top"></nav>
+              <nav id="toc-sidebar" class="sticky-top" {% if toc_prerendered != "" %}data-toggle="toc"{% endif %}>{{ toc_prerendered }}</nav>
             </div>
           </div>
         {% else %}
           <div class="row">
             <!-- sidebar, which will move to the top on a small screen -->
             <div class="col-sm-3">
-              <nav id="toc-sidebar" class="sticky-top"></nav>
+              <nav id="toc-sidebar" class="sticky-top" {% if toc_prerendered != "" %}data-toggle="toc"{% endif %}>{{ toc_prerendered }}</nav>
             </div>
             <!-- main content area -->
             <div class="col-sm-9">{{ content }}</div>

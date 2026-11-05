@@ -163,7 +163,8 @@
   <script defer src="{{ '/assets/js/zoom.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
 
-{% if page.toc and page.toc.sidebar %}
+{% comment %} Not needed when default.liquid already rendered the list (it would add a duplicate). {% endcomment %}
+{% if page.toc and page.toc.sidebar and toc_prerendered == blank %}
   <!-- Sidebar Table of Contents -->
   <script defer src="{{ '/assets/js/bootstrap-toc.min.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}

@@ -25,7 +25,10 @@ $(document).ready(function () {
     });
     var navSelector = "#toc-sidebar";
     var $myNav = $(navSelector);
-    Toc.init($myNav);
+    // Some pages (the CV) ship the list already rendered; only build it when it's empty.
+    if (!$myNav.find("a").length && typeof Toc !== "undefined") {
+      Toc.init($myNav);
+    }
     $("body").scrollspy({
       target: navSelector,
     });
