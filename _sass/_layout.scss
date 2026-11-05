@@ -18,8 +18,10 @@ body {
 }
 
 body.fixed-top-nav {
-  // Add some padding for the nav-bar.
-  padding-top: 56px;
+  // Add some padding for the nav-bar: its 0.5rem padding top and bottom, the 1.7rem social icons at
+  // line-height 1.5, and its 1px bottom border. Matching it exactly keeps progress-bar.js, which
+  // re-measures the navbar after every image loads, from nudging the content down.
+  padding-top: calc(1rem + 1.7rem * 1.5 + 1px);
 }
 
 body.sticky-bottom-footer {
