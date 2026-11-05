@@ -28,12 +28,30 @@
       {% if entry.preview %}
         {% assign preview_ext = entry.preview | split: '.' | last | downcase %}
         {% if preview_ext == 'mp4' or preview_ext == 'webm' %}
+          {% assign preview_poster = null %}
           {% if entry.preview contains '://' %}
             {% assign preview_src = entry.preview %}
           {% else %}
             {% assign preview_src = entry.preview | prepend: '/assets/img/publication_preview/' | relative_url %}
+            {% comment %} A same-named .jpg next to the video is shown until the video can play. {% endcomment %}
+            {% assign poster_file = entry.preview | split: '.' | first | append: '.jpg' %}
+            {% capture poster_exists %}{% file_exists assets/img/publication_preview/{{ poster_file }} %}{% endcapture %}
+            {% if poster_exists == 'true' %}
+              {% assign preview_poster = poster_file | prepend: '/assets/img/publication_preview/' | relative_url %}
+            {% endif %}
           {% endif %}
-          <video class="preview z-depth-1 rounded" src="{{ preview_src }}" autoplay loop muted playsinline></video>
+          <video
+            class="preview z-depth-1 rounded"
+            src="{{ preview_src }}"
+            {% if preview_poster %}
+              poster="{{ preview_poster }}"
+            {% endif %}
+            preload="auto"
+            autoplay
+            loop
+            muted
+            playsinline
+          ></video>
         {% elsif entry.preview contains '://' %}
           <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
         {% else %}

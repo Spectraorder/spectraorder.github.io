@@ -51,7 +51,12 @@
           .then((response) => (response.ok ? response.text() : ""))
           .then((html) => {
             const page = new DOMParser().parseFromString(html, "text/html");
-            const images = [...page.querySelectorAll('[role="main"] img')].slice(0, 12).map((element) => {
+            const images = [...page.querySelectorAll('[role="main"] img, [role="main"] video[poster]')].slice(0, 12).map((element) => {
+              if (element.tagName === "VIDEO") {
+                const poster = new Image();
+                poster.src = new URL(element.getAttribute("poster"), destination).href;
+                return poster.decode().catch(() => {});
+              }
               // Responsive images: load the same candidate the page will pick.
               const source = element.closest("picture")?.querySelector("source[srcset]");
               const image = new Image();
