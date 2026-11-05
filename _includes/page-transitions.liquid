@@ -1,0 +1,52 @@
+<!-- Page transitions: cross-document View Transitions. Browsers without support (e.g. Firefox) just navigate normally.
+     Inlined rather than in _sass so PurgeCSS cannot strip the ::view-transition-* selectors. -->
+<style>
+  @view-transition {
+    navigation: auto;
+  }
+
+  /* The navbar stays put; only the page content animates. */
+  #navbar {
+    view-transition-name: site-navbar;
+  }
+  [role="main"] {
+    view-transition-name: site-main;
+  }
+  ::view-transition-group(site-navbar),
+  ::view-transition-group(site-main) {
+    animation: none;
+  }
+  ::view-transition-old(site-navbar),
+  ::view-transition-new(site-navbar) {
+    animation: none;
+  }
+  ::view-transition-old(site-main) {
+    animation: page-out 160ms ease-in both;
+  }
+  ::view-transition-new(site-main) {
+    animation: page-in 360ms cubic-bezier(0.2, 0.7, 0.2, 1) 80ms both;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 240ms;
+  }
+
+  @keyframes page-out {
+    to {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    @view-transition {
+      navigation: none;
+    }
+  }
+</style>
