@@ -101,7 +101,8 @@ jobs:
           # pages then serve the original images until a later deploy gets ImageMagick again.
           if ! command -v convert >/dev/null; then
             echo "::warning::ImageMagick could not be installed; building without responsive images"
-            sed -i 's/^  enabled: true # enables responsive images/  enabled: false # enables responsive images/' _config.yml
+            # Matches the imagemagick block by key, since the "Update _config.yml" step rewrites the file without comments.
+            sed -i '/^imagemagick:/,/^[^[:space:]#]/ s/^\([[:space:]]*enabled:[[:space:]]*\)true/\1false/' _config.yml
           fi
           pip3 install --upgrade nbconvert
           export JEKYLL_ENV=production
