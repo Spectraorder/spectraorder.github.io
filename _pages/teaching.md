@@ -13,6 +13,7 @@ nav_order: 5
 
 ### [Georgia Institute of Technology](https://www.gatech.edu/)
 
+- **Head Teaching Assistant**, *CS 6476 A: Computer Vision*, Spring 2026
 - **Head Teaching Assistant**, *CS 6476 A: Computer Vision*, Fall 2025
 - **Teaching Assistant**, *CS 6476 A: Computer Vision*, Spring 2025
 
