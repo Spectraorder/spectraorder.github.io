@@ -11,6 +11,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
@@ -31,7 +32,13 @@ jobs:
             }
       - name: Install and Build 🔧
         run: |
-          sudo apt-get update && sudo apt-get install -y imagemagick
+          # jekyll-imagemagick needs `convert`. Skip the install when the runner already has it, and
+          # don't let a slow or down Ubuntu mirror hang the job: time out each download and retry.
+          if ! command -v convert >/dev/null; then
+            APT_OPTS="-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30"
+            sudo timeout 300 apt-get $APT_OPTS update
+            sudo timeout 300 apt-get $APT_OPTS install -y imagemagick
+          fi
           pip3 install --upgrade jupyter
           export JEKYLL_ENV=production
           bundle exec jekyll build
