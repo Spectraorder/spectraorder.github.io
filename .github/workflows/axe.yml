@@ -45,11 +45,16 @@ jobs:
       - name: Install and Build 🔧
         run: |
           # jekyll-imagemagick needs `convert`. Skip the install when the runner already has it, and
-          # don't let a slow or down Ubuntu mirror hang the job: time out each download and retry.
+          # don't let a slow or down Ubuntu mirror (or a held apt lock) hang the job: time out and retry.
           if ! command -v convert >/dev/null; then
-            APT_OPTS="-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30"
-            sudo timeout 300 apt-get $APT_OPTS update
-            sudo timeout 300 apt-get $APT_OPTS install -y imagemagick
+            APT_OPTS="-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30 -o DPkg::Lock::Timeout=60"
+            { sudo timeout 180 apt-get $APT_OPTS update && sudo timeout 180 apt-get $APT_OPTS install -y imagemagick; } || true
+          fi
+          # If it still isn't available, build without responsive image sizes instead of failing the deploy;
+          # pages then serve the original images until a later deploy gets ImageMagick again.
+          if ! command -v convert >/dev/null; then
+            echo "::warning::ImageMagick could not be installed; building without responsive images"
+            sed -i 's/^  enabled: true # enables responsive images/  enabled: false # enables responsive images/' _config.yml
           fi
           pip3 install --upgrade jupyter
           export JEKYLL_ENV=production
