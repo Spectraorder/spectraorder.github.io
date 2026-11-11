@@ -1,0 +1,198 @@
+/*******************************************************************************
+ * Site polish on top of al-folio, following an unslop pass (github.com/heydamir/unslop,
+ * by Damir Sokolovsky, CC BY 4.0).
+ *
+ * Direction: a lab notebook. Graphite text on warm paper, one ink-blue accent for links,
+ * and dates/venues set in mono like timestamps in a notebook margin (the signature detail,
+ * used for news dates and publication venues only).
+ ******************************************************************************/
+
+$font-sans:
+  "Inter",
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  sans-serif;
+$font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+// Type: one family, weights 400 and 500 (600 for rare emphasis), hierarchy from size and color.
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.btn,
+.navbar,
+.table,
+input,
+textarea {
+  font-family: $font-sans;
+}
+
+body {
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+strong,
+b {
+  font-weight: 600;
+}
+
+.post-header .post-title {
+  font-size: 2.25rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.post-header .post-description {
+  color: var(--global-text-color-light);
+}
+
+// Signature: dates and venues in mono, muted, like notebook timestamps.
+.news th {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--global-text-color-light);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-top: 0.45rem;
+}
+
+.publications ol.bibliography li .periodical {
+  font-family: $font-mono;
+  font-size: 0.8125rem;
+  color: var(--global-text-color-light);
+
+  em {
+    font-style: normal;
+  }
+}
+
+// Publication buttons: sentence case, quiet hairline, accent only on hover. Scoped like the theme's
+// own rule in _base.scss so these win.
+:root {
+  --control-border-color: rgba(31, 27, 22, 0.18);
+}
+html[data-theme="dark"] {
+  --control-border-color: rgba(239, 233, 222, 0.18);
+}
+
+.publications ol.bibliography li .links a.btn {
+  text-transform: none;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--global-text-color);
+  background-color: var(--global-card-bg-color);
+  border: 1px solid var(--control-border-color);
+  border-radius: 6px;
+  padding: 0.25rem 0.75rem;
+  margin-right: 0.25rem;
+  transition:
+    color 150ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 150ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  &:hover {
+    color: var(--global-theme-color);
+    border-color: var(--global-theme-color);
+  }
+}
+
+.publications ol.bibliography li .links a.coming-soon.btn {
+  border-style: dashed;
+  border-color: var(--global-text-color-light);
+  color: var(--global-text-color-light);
+
+  &:hover {
+    color: var(--global-text-color-light);
+    border-color: var(--global-text-color-light);
+  }
+}
+
+// Abstract / BibTeX / award panels. The theme animates max-height from 0 to 100em, so opening
+// snaps and closing lags. A one-row grid going 0fr -> 1fr animates to the content's real height
+// in both directions; the content fades and settles a few pixels as it opens.
+$panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+.publications ol.bibliography li {
+  div.abstract.hidden,
+  div.award.hidden,
+  div.bibtex.hidden {
+    display: grid;
+    grid-template-rows: 0fr;
+    max-height: none;
+    opacity: 0;
+    margin: 0;
+    border: 0;
+    border-left: 2px solid var(--control-border-color);
+    transition:
+      grid-template-rows 380ms $panel-ease,
+      margin 380ms $panel-ease,
+      opacity 240ms ease;
+
+    // The single child is the grid item: it must be able to shrink to 0 and keep no vertical
+    // margin, or a sliver would stay visible when closed.
+    > * {
+      min-height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0 0 0 0.875rem;
+      transform: translateY(-6px);
+      transition: transform 380ms $panel-ease;
+    }
+
+    p {
+      line-height: 1.55;
+    }
+
+    figure.highlight,
+    pre {
+      margin: 0;
+    }
+  }
+
+  div.abstract.hidden.open,
+  div.award.hidden.open,
+  div.bibtex.hidden.open {
+    grid-template-rows: 1fr;
+    max-height: none;
+    opacity: 1;
+    margin: 0.75rem 0 0.25rem;
+    // The theme sets a full-strength border color on open; keep the quiet rule instead.
+    border-left-color: var(--control-border-color);
+    // And its open state uses `transition: all 0.15s`; keep the same timing both ways.
+    transition:
+      grid-template-rows 380ms $panel-ease,
+      margin 380ms $panel-ease,
+      opacity 240ms ease;
+
+    > * {
+      transform: none;
+    }
+  }
+
+  div.award.hidden.open {
+    border-left-color: var(--global-highlight-color);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .publications ol.bibliography li .hidden,
+  .publications ol.bibliography li .hidden > * {
+    transition: none;
+  }
+}
