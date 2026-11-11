@@ -928,6 +928,20 @@ html.transition *:after {
   transition-delay: 0 !important;
 }
 
+// Homepage section titles (News, Selected Publications): smaller and semi-bold, so they read as
+// headings rather than the theme's large light-weight banners.
+h2.section-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+
+  a:hover {
+    color: var(--global-theme-color) !important;
+    text-decoration: none;
+  }
+}
+
 // Extra Markdown style (post Customization)
 .post {
   .post-meta {
