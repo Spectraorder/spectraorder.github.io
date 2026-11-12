@@ -196,3 +196,9 @@ $panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
     transition: none;
   }
 }
+
+// The theme draws the fixed navbar at 95% opacity, so content scrolling (or fading during a page
+// switch) shows through it. Keep it solid.
+.navbar {
+  opacity: 1;
+}

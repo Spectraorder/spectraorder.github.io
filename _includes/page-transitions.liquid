@@ -37,12 +37,18 @@
       visibility 0s linear 280ms;
   }
   html.page-loading::before {
-    inset: 0;
+    /* Start below the fixed navbar (its height is reserved as body padding in _layout.scss), so the
+       navbar stays in place across page switches and only the content area waits. */
+    top: 3.6rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
     background: var(--global-bg-color, #faf9f6);
   }
   html.page-loading::after {
-    /* The number comes from data-load-progress and the bar fill from --load-progress, both set by the
-       script below. */
+    /* The number comes from data-load-progress and the bar width from --load-fill (e.g. "42%"), both
+       set by the script below. The width is not computed with calc() here: the site's HTML minifier
+       mangles custom properties inside it (var(--x) becomes var( - - x)), dropping the background. */
     content: attr(data-load-progress);
     top: 50%;
     left: 50%;
@@ -56,7 +62,7 @@
     color: var(--global-text-color-light, #6b6359);
     background:
       linear-gradient(var(--global-theme-color, #2949a8), var(--global-theme-color, #2949a8)) 0 100% /
-        calc(var(--load-progress, 0) * 1%) 2px no-repeat,
+        var(--load-fill, 0%) 2px no-repeat,
       linear-gradient(var(--global-divider-color, rgba(31, 27, 22, 0.08)), var(--global-divider-color, rgba(31, 27, 22, 0.08))) 0
         100% / 100% 2px no-repeat;
     opacity: 0;
@@ -101,7 +107,7 @@
       setTimeout(() => {
         root.classList.remove("page-loading", "page-ready");
         delete root.dataset.loadProgress;
-        root.style.removeProperty("--load-progress");
+        root.style.removeProperty("--load-fill");
       }, 400);
     };
     const reveal = () => {
@@ -134,7 +140,7 @@
       const value = String(Math.floor(shown));
       if (root.dataset.loadProgress !== value) {
         root.dataset.loadProgress = value;
-        root.style.setProperty("--load-progress", value);
+        root.style.setProperty("--load-fill", value + "%");
       }
       if (done && shown >= 100) return hide();
       requestAnimationFrame(tick);
