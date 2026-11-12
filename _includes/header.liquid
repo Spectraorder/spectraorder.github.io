@@ -19,7 +19,7 @@
           {% endcase %}
         {% endfor %}
       </div>
-      {% if page.permalink != '/' %}
+      {% comment %} Shown on every page (the theme hid it on the homepage), so the navbar is identical across page switches. {% endcomment %}
         <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
           {% if site.title == 'blank' %}
             {% if site.first_name %}
@@ -37,7 +37,6 @@
             {{- site.title -}}
           {% endif %}
         </a>
-      {% endif %}
       <!-- Navbar Toggle -->
       <button
         class="navbar-toggler collapsed ml-auto"

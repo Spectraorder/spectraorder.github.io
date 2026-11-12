@@ -1,5 +1,5 @@
-<!-- Page transitions, ported from the CHORD lab site: the content fades up and out on an internal link click,
-     then the next page's content rises in. The next page and its images are loaded (or prefetched on hover)
+<!-- Page transitions, ported from the CHORD lab site: the content fades up and out (with the navbar and
+     footer fading alongside) on an internal link click, then the next page's content rises in. The next page and its images are loaded (or prefetched on hover)
      before the fade-out starts, so there is no blank screen while it loads.
      Inlined rather than in _sass so PurgeCSS cannot strip it. -->
 <style>
@@ -13,12 +13,24 @@
       transform: translateY(0);
     }
   }
+  @keyframes page-fade-in {
+    from {
+      opacity: 0;
+    }
+  }
   @media (prefers-reduced-motion: no-preference) {
     /* Rise in once the loader lifts (or straight away when the loader isn't running, e.g. without JS). */
     html:not(.page-loading) [role="main"],
     html.page-loading.page-ready [role="main"] {
       /* backwards, not both: a transform left on the container would break position: fixed inside it */
       animation: page-arrive 320ms ease-out backwards;
+    }
+    /* The navbar and footer fade in with it, without moving. */
+    html:not(.page-loading) #navbar,
+    html.page-loading.page-ready #navbar,
+    html:not(.page-loading) body > footer,
+    html.page-loading.page-ready body > footer {
+      animation: page-fade-in 320ms ease-out backwards;
     }
   }
 
@@ -37,12 +49,8 @@
       visibility 0s linear 280ms;
   }
   html.page-loading::before {
-    /* Start below the fixed navbar (its height is reserved as body padding in _layout.scss), so the
-       navbar stays in place across page switches and only the content area waits. */
-    top: 3.6rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    /* Covers the whole window, navbar included, so nothing shows half-loaded (e.g. icon fonts). */
+    inset: 0;
     background: var(--global-bg-color, #faf9f6);
   }
   html.page-loading::after {
@@ -160,6 +168,7 @@
     const MAX_WAIT = 1500; // never hold a click longer than this waiting for the next page
     const preloads = new Map();
     let exitAnimation;
+    let chromeAnimations = [];
     let navigationPending = false;
 
     // The destination URL if this link goes to another page of this site, otherwise null
@@ -244,12 +253,17 @@
       const ready = Promise.race([preload(destination), new Promise((resolve) => setTimeout(resolve, MAX_WAIT))]);
       ready.then(() => {
         if (!navigationPending) return;
+        const timing = { duration: 160, easing: "ease-in", fill: "forwards" };
         exitAnimation = pageContent.animate(
           [
             { opacity: 1, transform: "translateY(0)" },
             { opacity: 0, transform: "translateY(-8px)" },
           ],
-          { duration: 160, easing: "ease-in", fill: "forwards" }
+          timing
+        );
+        // The navbar and footer fade out with the content (opacity only, so they don't shift).
+        chromeAnimations = [...document.querySelectorAll("#navbar, body > footer")].map((element) =>
+          element.animate([{ opacity: 1 }, { opacity: 0 }], timing)
         );
         exitAnimation.finished.then(go).catch(() => {});
         // Navigate anyway if the animation stalls (e.g. the tab is hidden mid-click).
@@ -261,6 +275,8 @@
     window.addEventListener("pageshow", () => {
       exitAnimation?.cancel();
       exitAnimation = undefined;
+      chromeAnimations.forEach((animation) => animation.cancel());
+      chromeAnimations = [];
       navigationPending = false;
       document.documentElement.style.cursor = "";
     });
