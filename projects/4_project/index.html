@@ -4,7 +4,80 @@
       gtag('js', new Date());
 
       gtag('config', 'G-5SPCF5G2G0');
-    </script> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> project 4 | Yiming Chen </title> <meta name="author" content="Yiming Chen"> <meta name="description" content="another without an image"> <meta name="keywords" content="Yiming Chen, Georgia Tech, computer vision, machine learning, 3D scene understanding, generative modeling"> <style>@keyframes page-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:no-preference){[role="main"]{animation:page-arrive 320ms ease-out backwards}}</style> <script>
+    </script> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> project 4 | Yiming Chen </title> <meta name="author" content="Yiming Chen"> <meta name="description" content="another without an image"> <meta name="keywords" content="Yiming Chen, Georgia Tech, computer vision, machine learning, 3D scene understanding, generative modeling"> <style>@keyframes page-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:no-preference){html:not(.page-loading) [role="main"],html.page-loading.page-ready [role="main"]{animation:page-arrive 320ms ease-out backwards}}html.page-loading::before,html.page-loading::after{content:"";position:fixed;z-index:2000;pointer-events:none;transition:opacity 280ms ease,visibility 0s linear 280ms}html.page-loading::before{inset:0;background:var(--global-bg-color,#faf9f6)}html.page-loading::after{content:attr(data-load-progress);top:50%;left:50%;width:120px;margin:-18px 0 0 -60px;padding-bottom:12px;text-align:center;font:500 12px/16px "JetBrains Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--global-text-color-light,#6b6359);background:linear-gradient(var(--global-theme-color,#2949a8),var(--global-theme-color,#2949a8)) 0 100% / calc(var( -  - load - progress, 0) * 1%) 2px no-repeat,linear-gradient(var(--global-divider-color,rgba(31,27,22,0.08)),var(--global-divider-color,rgba(31,27,22,0.08))) 0 100% / 100% 2px no-repeat;opacity:0;animation:loader-appear 200ms ease 250ms forwards}html.page-loading.page-ready::before,html.page-loading.page-ready::after{opacity:0;visibility:hidden;animation:none}@keyframes loader-appear{to{opacity:1}}</style> <script>
+  // Hold the cover until everything has loaded (window load + web fonts), but never longer than
+  // MAX_LOADER_MS, so one slow image can't keep the page hidden. While it waits, count up the share
+  // of the page's images (plus the HTML itself) that have finished; when the page is ready the
+  // number runs to 100 before the cover fades.
+  (() => {
+    const MAX_LOADER_MS = 3000;
+    const LOADER_DELAY_MS = 250; // matches the loader-appear delay in the CSS above
+    const root = document.documentElement;
+    const startedAt = performance.now();
+    root.classList.add("page-loading");
+
+    let done = false; // the page is ready (or the time limit hit)
+    let hidden = false; // the cover has started fading out
+    let images = [];
+    let target = 5;
+    let shown = 0;
+    let last = startedAt;
+
+    const hide = () => {
+      if (hidden) return;
+      hidden = true;
+      root.classList.add("page-ready");
+      // Drop the cover entirely once it has faded, so it never sits over the page.
+      setTimeout(() => {
+        root.classList.remove("page-loading", "page-ready");
+        delete root.dataset.loadProgress;
+        root.style.removeProperty("--load-progress");
+      }, 400);
+    };
+    const reveal = () => {
+      if (done) return;
+      done = true;
+      target = 100;
+      // Too quick for the loader to have appeared: just show the page.
+      if (performance.now() - startedAt < LOADER_DELAY_MS) return hide();
+      // Otherwise let the number reach 100 first, without holding the page for long.
+      setTimeout(hide, 350);
+    };
+
+    const measure = () => {
+      if (done) return;
+      const total = images.length + 1;
+      const finished = (document.readyState === "loading" ? 0 : 1) + images.filter((img) => img.complete).length;
+      target = Math.max(target, Math.min(99, Math.round((finished / total) * 100)));
+    };
+    document.addEventListener("DOMContentLoaded", () => {
+      images = [...document.images].filter((img) => img.loading !== "lazy");
+    });
+
+    // Ease toward the target by elapsed time, so the count stays smooth even if frames are dropped.
+    const tick = (now) => {
+      if (hidden) return;
+      measure();
+      shown += (target - shown) * (1 - Math.exp(-(now - last) / (done ? 50 : 150)));
+      last = now;
+      if (target - shown < 0.5) shown = target;
+      const value = String(Math.floor(shown));
+      if (root.dataset.loadProgress !== value) {
+        root.dataset.loadProgress = value;
+        root.style.setProperty("--load-progress", value);
+      }
+      if (done && shown >= 100) return hide();
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    const loaded = new Promise((resolve) =>
+      document.readyState === "complete" ? resolve() : window.addEventListener("load", resolve, { once: true })
+    );
+    Promise.all([loaded, document.fonts ? document.fonts.ready : null]).then(reveal, reveal);
+    setTimeout(reveal, MAX_LOADER_MS);
+  })();
+</script> <script>
   (() => {
     const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
     const MAX_WAIT = 1500; // never hold a click longer than this waiting for the next page
@@ -123,7 +196,7 @@ title: project
 description: a project with a background image
 img: /assets/img/12.jpg
 ---
-</code></pre></div></div> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/1.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/3.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/5.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <div class="caption"> Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles. </div> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/5.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <div class="caption"> This image can also have a caption. It's like magic. </div> <p>You can also put regular text between your rows of images. Say you wanted to write a little bit about your project before you posted the rest of the images. You describe how you toiled, sweated, <em>bled</em> for your project, and then… you reveal its glory in the next row of images.</p> <div class="row justify-content-sm-center"> <div class="col-sm-8 mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/6.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> <div class="col-sm-4 mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/11.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <div class="caption"> You can also have artistically styled 2/3 + 1/3 images, like these. </div> <p>The code is simple. Just wrap your images with <code class="language-plaintext highlighter-rouge">&lt;div class="col-sm"&gt;</code> and place them inside <code class="language-plaintext highlighter-rouge">&lt;div class="row"&gt;</code> (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/" rel="external nofollow noopener" target="_blank">Bootstrap Grid</a> system). To make images responsive, add <code class="language-plaintext highlighter-rouge">img-fluid</code> class to each; for rounded corners and shadows use <code class="language-plaintext highlighter-rouge">rounded</code> and <code class="language-plaintext highlighter-rouge">z-depth-1</code> classes. Here’s the code for the last row of images above:</p> <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row justify-content-sm-center"</span><span class="nt">&gt;</span>
+</code></pre></div></div> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/1-480.webp 480w,/assets/img/1-800.webp 800w,/assets/img/1-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/1.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/3-480.webp 480w,/assets/img/3-800.webp 800w,/assets/img/3-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/3.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/5-480.webp 480w,/assets/img/5-800.webp 800w,/assets/img/5-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/5.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <div class="caption"> Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles. </div> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/5-480.webp 480w,/assets/img/5-800.webp 800w,/assets/img/5-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/5.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <div class="caption"> This image can also have a caption. It's like magic. </div> <p>You can also put regular text between your rows of images. Say you wanted to write a little bit about your project before you posted the rest of the images. You describe how you toiled, sweated, <em>bled</em> for your project, and then… you reveal its glory in the next row of images.</p> <div class="row justify-content-sm-center"> <div class="col-sm-8 mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/6-480.webp 480w,/assets/img/6-800.webp 800w,/assets/img/6-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/6.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> <div class="col-sm-4 mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/11-480.webp 480w,/assets/img/11-800.webp 800w,/assets/img/11-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/11.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="lazy" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <div class="caption"> You can also have artistically styled 2/3 + 1/3 images, like these. </div> <p>The code is simple. Just wrap your images with <code class="language-plaintext highlighter-rouge">&lt;div class="col-sm"&gt;</code> and place them inside <code class="language-plaintext highlighter-rouge">&lt;div class="row"&gt;</code> (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/" rel="external nofollow noopener" target="_blank">Bootstrap Grid</a> system). To make images responsive, add <code class="language-plaintext highlighter-rouge">img-fluid</code> class to each; for rounded corners and shadows use <code class="language-plaintext highlighter-rouge">rounded</code> and <code class="language-plaintext highlighter-rouge">z-depth-1</code> classes. Here’s the code for the last row of images above:</p> <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row justify-content-sm-center"</span><span class="nt">&gt;</span>
   <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"col-sm-8 mt-3 mt-md-0"</span><span class="nt">&gt;</span>
     {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
   <span class="nt">&lt;/div&gt;</span>
