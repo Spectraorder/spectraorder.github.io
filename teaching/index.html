@@ -4,7 +4,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-5SPCF5G2G0');
-    </script> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Teaching | Yiming Chen </title> <meta name="author" content="Yiming Chen"> <meta name="description" content="Yiming Chen is a Computer Science PhD student at Georgia Tech working on computer vision and machine learning, with a focus on 3D scene understanding, generative modeling, and physical scene properties. "> <meta name="keywords" content="Yiming Chen, Georgia Tech, computer vision, machine learning, 3D scene understanding, generative modeling"> <style>@keyframes page-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:no-preference){html:not(.page-loading) [role="main"],html.page-loading.page-ready [role="main"]{animation:page-arrive 320ms ease-out backwards}}html.page-loading::before,html.page-loading::after{content:"";position:fixed;z-index:2000;pointer-events:none;transition:opacity 280ms ease,visibility 0s linear 280ms}html.page-loading::before{top:3.6rem;right:0;bottom:0;left:0;background:var(--global-bg-color,#faf9f6)}html.page-loading::after{content:attr(data-load-progress);top:50%;left:50%;width:120px;margin:-18px 0 0 -60px;padding-bottom:12px;text-align:center;font:500 12px/16px "JetBrains Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--global-text-color-light,#6b6359);background:linear-gradient(var(--global-theme-color,#2949a8),var(--global-theme-color,#2949a8)) 0 100% / var(--load-fill,0) 2px no-repeat,linear-gradient(var(--global-divider-color,rgba(31,27,22,0.08)),var(--global-divider-color,rgba(31,27,22,0.08))) 0 100% / 100% 2px no-repeat;opacity:0;animation:loader-appear 200ms ease 250ms forwards}html.page-loading.page-ready::before,html.page-loading.page-ready::after{opacity:0;visibility:hidden;animation:none}@keyframes loader-appear{to{opacity:1}}</style> <script>
+    </script> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Teaching | Yiming Chen </title> <meta name="author" content="Yiming Chen"> <meta name="description" content="Yiming Chen is a Computer Science PhD student at Georgia Tech working on computer vision and machine learning, with a focus on 3D scene understanding, generative modeling, and physical scene properties. "> <meta name="keywords" content="Yiming Chen, Georgia Tech, computer vision, machine learning, 3D scene understanding, generative modeling"> <style>@keyframes page-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}@keyframes page-fade-in{from{opacity:0}}@media(prefers-reduced-motion:no-preference){html:not(.page-loading) [role="main"],html.page-loading.page-ready [role="main"]{animation:page-arrive 320ms ease-out backwards}html:not(.page-loading) #navbar,html.page-loading.page-ready #navbar,html:not(.page-loading) body>footer,html.page-loading.page-ready body>footer{animation:page-fade-in 320ms ease-out backwards}}html.page-loading::before,html.page-loading::after{content:"";position:fixed;z-index:2000;pointer-events:none;transition:opacity 280ms ease,visibility 0s linear 280ms}html.page-loading::before{inset:0;background:var(--global-bg-color,#faf9f6)}html.page-loading::after{content:attr(data-load-progress);top:50%;left:50%;width:120px;margin:-18px 0 0 -60px;padding-bottom:12px;text-align:center;font:500 12px/16px "JetBrains Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--global-text-color-light,#6b6359);background:linear-gradient(var(--global-theme-color,#2949a8),var(--global-theme-color,#2949a8)) 0 100% / var(--load-fill,0) 2px no-repeat,linear-gradient(var(--global-divider-color,rgba(31,27,22,0.08)),var(--global-divider-color,rgba(31,27,22,0.08))) 0 100% / 100% 2px no-repeat;opacity:0;animation:loader-appear 200ms ease 250ms forwards}html.page-loading.page-ready::before,html.page-loading.page-ready::after{opacity:0;visibility:hidden;animation:none}@keyframes loader-appear{to{opacity:1}}</style> <script>
   // Hold the cover until everything has loaded (window load + web fonts), but never longer than
   // MAX_LOADER_MS, so one slow image can't keep the page hidden. While it waits, count up the share
   // of the page's images (plus the HTML itself) that have finished; when the page is ready the
@@ -83,6 +83,7 @@
     const MAX_WAIT = 1500; // never hold a click longer than this waiting for the next page
     const preloads = new Map();
     let exitAnimation;
+    let chromeAnimations = [];
     let navigationPending = false;
 
     // The destination URL if this link goes to another page of this site, otherwise null
@@ -167,12 +168,17 @@
       const ready = Promise.race([preload(destination), new Promise((resolve) => setTimeout(resolve, MAX_WAIT))]);
       ready.then(() => {
         if (!navigationPending) return;
+        const timing = { duration: 160, easing: "ease-in", fill: "forwards" };
         exitAnimation = pageContent.animate(
           [
             { opacity: 1, transform: "translateY(0)" },
             { opacity: 0, transform: "translateY(-8px)" },
           ],
-          { duration: 160, easing: "ease-in", fill: "forwards" }
+          timing
+        );
+        // The navbar and footer fade out with the content (opacity only, so they don't shift).
+        chromeAnimations = [...document.querySelectorAll("#navbar, body > footer")].map((element) =>
+          element.animate([{ opacity: 1 }, { opacity: 0 }], timing)
         );
         exitAnimation.finished.then(go).catch(() => {});
         // Navigate anyway if the animation stalls (e.g. the tab is hidden mid-click).
@@ -184,6 +190,8 @@
     window.addEventListener("pageshow", () => {
       exitAnimation?.cancel();
       exitAnimation = undefined;
+      chromeAnimations.forEach((animation) => animation.cancel());
+      chromeAnimations = [];
       navigationPending = false;
       document.documentElement.style.cursor = "";
     });
