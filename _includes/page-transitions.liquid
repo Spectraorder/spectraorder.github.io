@@ -261,8 +261,8 @@
           ],
           timing
         );
-        // The navbar and footer fade out with the content (opacity only, so they don't shift).
-        chromeAnimations = [...document.querySelectorAll("#navbar, body > footer")].map((element) =>
+        // The navbar, footer and back-to-top button fade out with the content (opacity only, so they don't shift).
+        chromeAnimations = [...document.querySelectorAll("#navbar, body > footer, #back-to-top")].map((element) =>
           element.animate([{ opacity: 1 }, { opacity: 0 }], timing)
         );
         exitAnimation.finished.then(go).catch(() => {});
