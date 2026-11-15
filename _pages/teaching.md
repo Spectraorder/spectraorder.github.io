@@ -9,8 +9,6 @@ nav_order: 5
 
 <!-- A summary of my teaching assistant experience at Georgia Tech and New York University. -->
 
----
-
 ### [Georgia Institute of Technology](https://www.gatech.edu/)
 
 - **Head Teaching Assistant**, *CS 6476 A: Computer Vision*, Spring 2026
