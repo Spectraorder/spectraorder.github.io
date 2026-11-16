@@ -966,6 +966,18 @@ h2.section-title {
   }
 }
 
+// The same section titles inside a page (e.g. Teaching & Service, via kramdown's {: .section-title}):
+// the first sits closer to the page title, and the headings under them step down a size.
+article > h2.section-title:first-child {
+  margin-top: 1.5rem;
+}
+article h2.section-title ~ h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
 // Extra Markdown style (post Customization)
 .post {
   .post-meta {

@@ -1,0 +1,9 @@
+<ul class="service-list">
+  {% for item in site.data.service %}
+    <li>
+      <strong>{{ item.role }}</strong>,
+      {% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% else %}{{ item.name }}{% endif %},
+      {{ item.organization }}, {{ item.period }}
+    </li>
+  {% endfor %}
+</ul>

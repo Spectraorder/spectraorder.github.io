@@ -1,13 +1,21 @@
 ---
 layout: page
 permalink: /teaching/
-title: Teaching
+title: Academic Service
 # description: A summary of my teaching assistant experience.
 nav: true
 nav_order: 5
 ---
 
-<!-- A summary of my teaching assistant experience at Georgia Tech and New York University. -->
+<!-- A summary of my teaching assistant experience and academic service. -->
+
+## Reviewing
+{: .section-title}
+
+{% include service.liquid %}
+
+## Teaching
+{: .section-title}
 
 ### [Georgia Institute of Technology](https://www.gatech.edu/)
 

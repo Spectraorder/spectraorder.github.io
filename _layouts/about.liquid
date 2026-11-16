@@ -67,6 +67,15 @@ layout: default
       {% include selected_papers.liquid %}
     {% endif %}
 
+    <!-- Academic service (from _data/service.yml) -->
+    {% if site.data.service and site.data.service.size > 0 %}
+      <h2 class="section-title">
+        <a href="{{ '/teaching/' | relative_url }}" style="color: inherit">Academic Service</a>
+        <a class="see-all" href="{{ '/teaching/' | relative_url }}">All service &rarr;</a>
+      </h2>
+      {% include service.liquid %}
+    {% endif %}
+
     <!-- Social -->
     {% if page.social %}
       <div class="social">

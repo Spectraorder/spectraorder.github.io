@@ -1,0 +1,7 @@
+# Academic service, newest first. Shown on the homepage and the Academic Service page
+# (via _includes/service.liquid). The CV keeps its own copy in _data/cv.yml.
+- role: Reviewer
+  name: PURA Salary Awards
+  url: https://experiential.learning.gatech.edu/urop/pura-salary/
+  organization: Georgia Institute of Technology
+  period: Spring 2027
