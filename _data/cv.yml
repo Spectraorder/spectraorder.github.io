@@ -11,17 +11,23 @@
   contents:
     - title: PhD in Computer Science
       institution: Georgia Institute of Technology, Atlanta, GA
+      logo: gatech.svg
       year: 2026 - Present
       description:
-        - 'Advisor: <a href="https://www.siddkaramcheti.com/">Prof. Sidd Karamcheti</a>'
+        - title: 'Advisors:'
+          contents:
+            - '<a href="https://www.siddkaramcheti.com/">Prof. Sidd Karamcheti</a>'
+            - '<a href="https://faculty.cc.gatech.edu/~hays/">Prof. James Hays</a>'
     - title: Master's Degree in Computer Science
       institution: Georgia Institute of Technology, Atlanta, GA
+      logo: gatech.svg
       year: 2024 - 2026
       description:
         - Specialization in Machine Learning.
         - 'Advisor: <a href="https://faculty.cc.gatech.edu/~hays/">Prof. James Hays</a>'
     - title: Bachelor's Degree in Computer Science and Mathematics
       institution: New York University, Manhattan, NY
+      logo: nyu.svg
       year: 2020 - 2024
       description:
         - 'Advisor: <a href="https://wp.nyu.edu/courantinstituteofmathematicalsciences-gizemk/">Prof. Gizem Kayar</a>'
@@ -31,9 +37,15 @@
   contents:
     - title: Machine Learning Engineer Internship
       institution: Amazon Web Services, Cupertino, CA
+      logo: aws.svg
+      year: 2026.05 - 2026.08
+    - title: Machine Learning Engineer Internship
+      institution: Amazon Web Services, Cupertino, CA
+      logo: aws.svg
       year: 2025.05 - 2025.08
     - title: Machine Learning Engineer Internship
       institution: T.C.L. Industries Holdings, Shenzhen, China
+      logo: tcl.svg
       year: 2024.06 - 2024.08
 
 - title: Honors and Awards

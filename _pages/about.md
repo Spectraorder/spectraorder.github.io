@@ -29,7 +29,7 @@ latest_posts:
 
 Hi! I am Yiming Chen. 👋
 
-I'm a PhD student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I'm fortunate to be advised by [Prof. Sidd Karamcheti](https://www.siddkaramcheti.com/).
+I'm a PhD student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I'm fortunate to be co-advised by [Prof. Sidd Karamcheti](https://www.siddkaramcheti.com/) and [Prof. James Hays](https://faculty.cc.gatech.edu/~hays/).
 
 My research focuses on building robots that understand, predict, and act in the physical world alongside people. I'm particularly interested in world models and world action models (WAMs), object-centric representations of scenes and environments, and human-robot collaboration.
 

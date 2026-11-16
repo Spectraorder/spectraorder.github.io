@@ -58,6 +58,20 @@ i.iconinstitution {
   margin-right: 0.3rem;
 }
 
+// Institution logos (cv.yml `logo:`, files in assets/img/logos). A small white tile keeps logos with
+// dark artwork (e.g. AWS) readable in dark mode too.
+img.cv-logo {
+  display: block;
+  width: 2.5rem;
+  height: 1.75rem;
+  padding: 3px 4px;
+  margin-right: 0.5rem;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px var(--global-divider-color);
+}
+
 i.icondepartment {
   color: var(--global-theme-color);
   font-size: 0.8rem;
